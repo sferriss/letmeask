@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import logoImg from "../assets/images/logo.svg"
 import deleteImg from "../assets/images/delete.svg"
@@ -31,7 +30,7 @@ export function AdminRoom() {
         await database.ref(`rooms/${roomId}`).update({
             endedAt: new Date(),
         })
-        
+
         history.push("/")
     }
 
@@ -39,7 +38,14 @@ export function AdminRoom() {
         <div id="page-room">
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
+                    <img
+                        src={logoImg}
+                        alt="Letmeask"
+                        onClick={() => {
+                            history.push("/")
+                        }}
+                        style={{ cursor: "pointer" }}
+                    />
                     <div>
                         <RoomCode code={roomId} />
                         <Button isOutlined onClick={handleEndRoom}>
